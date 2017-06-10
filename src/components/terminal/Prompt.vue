@@ -10,7 +10,7 @@
 
 <script>
   import Runner from '../../bin/system/runner'
-  let history = [1, 2, 3, 4, 5]
+  let history = []
   let historyIndex = 0
   let currentCommand = ''
   export default {
