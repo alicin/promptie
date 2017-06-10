@@ -1,12 +1,18 @@
 <template>
   <div :class="{disabled: disabled}">
     <span class="prompt">$</span>
-    <input id="prompt" type="text" v-model="command" @keyup.enter="execute(command)" :disabled="disabled">
+    <input id="prompt" type="text" 
+    v-model="command" @keyup.enter="execute(command)" 
+    @keyup.up="historyBack()" @keyup.down="historyForward()"
+    :disabled="disabled">
   </div>
 </template>
 
 <script>
   import Runner from '../../bin/system/runner'
+  let history = [1, 2, 3, 4, 5]
+  let historyIndex = 0
+  let currentCommand = ''
   export default {
     name: 'prompt',
     components: {
@@ -21,6 +27,26 @@
       execute (command) {
         this.command = ''
         Runner.run(command)
+        history.push(command)
+      },
+      historyBack () {
+        if (!currentCommand) {
+          currentCommand = this.command
+        }
+        if (history.length && history.length > historyIndex) {
+          this.command = history[history.length - 1 - historyIndex]
+          historyIndex++
+        }
+      },
+      historyForward () {
+        if (historyIndex > 0) {
+          this.command = history[history.length + 1 - historyIndex]
+          if (!this.command) {
+            this.command = currentCommand
+            currentCommand = undefined
+          }
+          historyIndex--
+        }
       }
     },
     created () {
