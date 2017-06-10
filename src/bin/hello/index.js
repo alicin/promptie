@@ -3,7 +3,7 @@ import progress from '../system/progress'
 export default function (screen, params, done) {
   var index = 0
   screen.push(paint('Hello and welcome to "hello" command', {styles: ['blue', 'bold']}))
-  screen.push(paint('You will be presented with a dummy determinate loading..', {styles: ['magenta', 'underline']}))
+  screen.push(paint('You will be presented with a dummy determinate loading..', {styles: ['magenta', 'underline', 'white-bg']}))
   screen.push(paint('hello', {styles: ['command']}))
   screen.push(paint('google', {link: 'http://google.ca'}))
   let interval = setInterval(() => {

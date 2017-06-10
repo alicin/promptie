@@ -1,0 +1,101 @@
+.paint {
+}
+.paint.white {
+  color: #fff;
+}
+.paint.white-bg {
+  background-color: #fff;
+}
+.paint.black {
+  color: #000;
+}
+.paint.black-bg {
+  background-color: #000;
+}
+.paint.red {
+  color: #ff6f6b;
+}
+.paint.red-bg {
+  background-color: #ff6f6b;
+}
+.paint.red.underline {
+  border-bottom: 1px solid #ff6f6b;
+}
+.paint.green {
+  color: #62f591;
+}
+.paint.green-bg {
+  background-color: #62f591;
+}
+.paint.green.underline {
+  border-bottom: 1px solid #62f591;
+}
+.paint.yellow {
+  color: #f3f7a2;
+}
+.paint.yellow-bg {
+  background-color: #f3f7a2;
+}
+.paint.yellow.underline {
+  border-bottom: 1px solid #f3f7a2;
+}
+.paint.blue {
+  color: #c9abf8;
+}
+.paint.blue-bg {
+  background-color: #c9abf8;
+}
+.paint.blue.underline {
+  border-bottom: 1px solid #c9abf8;
+}
+.paint.magenta {
+  color: #ff94d0;
+}
+.paint.magenta-bg {
+  background-color: #ff94d0;
+}
+.paint.magenta.underline {
+  border-bottom: 1px solid #ff94d0;
+}
+.paint.cyan {
+  color: #9dedfc;
+}
+.paint.cyan-bg {
+  background-color: #9dedfc;
+}
+.paint.cyan.underline {
+  border-bottom: 1px solid #9dedfc;
+}
+.paint.gray {
+  color: #bfbfbf;
+}
+.paint.gray-bg {
+  background-color: #bfbfbf;
+}
+.paint.gray.underline {
+  border-bottom: 1px solid #bfbfbf;
+}
+.paint.bold {
+  text-shadow: 0px 0px 1px;
+}
+.paint.underline {
+  border-bottom: 1px solid #ffffff;
+}
+.paint.strikethrough {
+  text-decoration: line-through;
+}
+.paint.italic {
+  font-style: italic;
+}
+.paint.dim {
+  opacity: 0.7;
+}
+.paint.command {
+  cursor: pointer;
+  border-bottom: 1px dotted #fff;
+}
+.paint a {
+  cursor: pointer;
+  color: #40a2f9;
+  text-decoration: underline;
+}
