@@ -14,7 +14,8 @@ module.exports = {
   // required to lint *.vue files
   globals: {
     App: true,
-    __static: true
+    TerminalScreen: true,
+    Prompt: true
   },
   plugins: [
     'html'
