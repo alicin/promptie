@@ -1,7 +1,7 @@
 {
-  "name": "portfolio",
+  "name": "promptie",
   "version": "1.0.0",
-  "description": "Personal Portfolio of mr. Bardakci",
+  "description": "A framework for creating command-line like interfaces in web browsers.",
   "author": "Ali Can Bardakci <alicanbardakci@gmail.com>",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "minimist": "^1.2.0",
     "vue": "^2.3.3",
     "vue-router": "^2.3.1"
   },
