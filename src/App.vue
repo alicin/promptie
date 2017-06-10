@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import shame from './fileofshame'
 export default {
   name: 'app',
   created () {
@@ -18,6 +19,7 @@ export default {
       t--
       return -c / 2 * (t * (t - 2) - 1) + b
     }
+    shame()
   }
 }
 </script>
