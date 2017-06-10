@@ -81,6 +81,10 @@ div {
 .paint.dim {
   opacity: 0.7;
 }
+.paint.command {
+  cursor: pointer;
+  border-bottom: 1px dotted #fff;
+}
 .paint a {
   cursor: pointer;
   color: #c9abf8;
