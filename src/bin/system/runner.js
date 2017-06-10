@@ -15,11 +15,11 @@ export default class Runner {
           }, 1)
         })
       } else {
-        TerminalScreen.push(`-promptie: ${command}: command is in the wrong application format. It should return a function`)
+        TerminalScreen.push(`-promptie: ${app}: command is in the wrong application format. It should return a function`)
       }
     } catch (e) {
       console.log(e)
-      TerminalScreen.push(`-promptie: ${command}: command not found`)
+      TerminalScreen.push(`-promptie: ${app}: command not found`)
     }
   }
 
