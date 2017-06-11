@@ -43,6 +43,9 @@
       removeLastLine () {
         this.lines.pop()
       },
+      clear () {
+        this.lines = []
+      },
       scrollBottom () {
         let start = this.$el.scrollTop
         let change = this.$el.scrollHeight - (this.$el.clientHeight + this.$el.scrollTop)
@@ -81,8 +84,8 @@
     display: block;
     font-weight: bold;
     font-size: 12px;
-    padding: 0 20px;
-    margin: 5px;
+    padding: 0 25px;
+    margin: 5px 0;
   }
   .newline {
     width: 100%;
