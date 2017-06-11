@@ -28,9 +28,12 @@ export default class Runner {
     const parsedCommand = clean.split(' ')
     TerminalScreen.pushNewLine()
     TerminalScreen.push('$ ' + clean)
+    const app = parsedCommand[0]
+    let args = minimist(parsedCommand.slice(1))
+    args._plain = clean.replace(app + ' ', '')
     return {
-      app: parsedCommand[0],
-      args: minimist(parsedCommand.slice(1))
+      app,
+      args
     }
   }
 
