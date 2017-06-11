@@ -1,6 +1,6 @@
 <template>
   <div :class="{disabled: disabled}">
-    <span class="prompt">$</span>
+    <span class="prompt">{{ prompt }}</span>
     <input id="prompt" type="text" 
     v-model="command" @keyup.enter="execute(command)" 
     @keyup.up="historyBack()" @keyup.down="historyForward()"
@@ -20,6 +20,7 @@
     },
     data () {
       return {
+        prompt: '$',
         disabled: false,
         command: ''
       }
@@ -27,6 +28,9 @@
     methods: {
       execute (command) {
         this.command = ''
+        if (command === '') {
+          return TerminalScreen.push(this.prompt)
+        }
         Runner.run(command)
         history.push(command)
       },
