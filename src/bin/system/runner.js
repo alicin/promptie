@@ -18,8 +18,11 @@ export default class Runner {
         TerminalScreen.push(`-promptie: ${app}: command is in the wrong application format. It should return a function`)
       }
     } catch (e) {
-      console.log(e)
-      TerminalScreen.push(`-promptie: ${app}: command not found`)
+      if (e.message.indexOf('Cannot find module') > -1) {
+        TerminalScreen.push(`-promptie: ${app}: command not found`)
+      } else {
+        TerminalScreen.push(`-promptie: ${e.stack}`)
+      }
     }
   }
 
