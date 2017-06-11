@@ -1,4 +1,4 @@
-export default function (screen, params, done) {
+export default function (screen, args, done) {
   screen.clear()
   done()
 }
