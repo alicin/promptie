@@ -60,15 +60,15 @@
           return $input.selectionStart
         } else if (document.selection) {
           $input.focus()
-          var sel = document.selection.createRange()
-          var selLen = document.selection.createRange().text.length
+          let sel = document.selection.createRange()
+          let selLen = document.selection.createRange().text.length
           sel.moveStart('character', -$input.value.length)
           return sel.text.length - selLen
         }
       },
       setCaretPostion (caretPos) {
         if ($input.createTextRange) {
-          var range = $input.createTextRange()
+          let range = $input.createTextRange()
           range.move('character', caretPos)
           range.select()
         } else {

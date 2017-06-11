@@ -53,9 +53,9 @@
         let increment = 20
         let duration = 100
 
-        var animateScroll = () => {
+        let animateScroll = () => {
           currentTime += increment
-          var val = Math.easeInOutQuad(currentTime, start, change, duration)
+          let val = Math.easeInOutQuad(currentTime, start, change, duration)
           this.$el.scrollTop = val
           if (currentTime < duration) {
             setTimeout(animateScroll, increment)
