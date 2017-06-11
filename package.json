@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A framework for creating command-line like interfaces in web browsers.",
   "author": "Ali Can Bardakci <alicanbardakci@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
