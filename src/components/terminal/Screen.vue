@@ -86,6 +86,7 @@
     font-size: 12px;
     padding: 0 25px;
     margin: 5px 0;
+    white-space: pre-wrap;
   }
   .newline {
     width: 100%;
