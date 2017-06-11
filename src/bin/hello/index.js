@@ -1,7 +1,7 @@
 import paint from '../system/paint'
 import progress from '../system/progress'
 export default function (screen, args, done) {
-  var index = 0
+  let index = 0
   screen.push(paint('Hello and welcome to "hello" command', {styles: ['blue', 'bold']}))
   screen.push(paint('You will be presented with a dummy determinate loading..', {styles: ['magenta', 'underline', 'white-bg']}))
   screen.push(paint('hello', {styles: ['command']}))

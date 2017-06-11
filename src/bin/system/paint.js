@@ -1,5 +1,5 @@
 export default function paint (str, args) {
-  var paintedStr = '<span class="paint'
+  let paintedStr = '<span class="paint'
   if (args.styles) {
     args.styles.forEach(function (arg) {
       paintedStr += ' ' + arg

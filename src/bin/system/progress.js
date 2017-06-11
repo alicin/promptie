@@ -21,7 +21,7 @@ export default class Progress {
   static pushProgressDeterminate (progress, zero, one) {
     const percentage = Math.round(progress * 100)
     let loading = ''
-    for (var i = 0; i < 20; i++) {
+    for (let i = 0; i < 20; i++) {
       if (i < Math.round(progress * 20)) {
         loading += one
       } else {
