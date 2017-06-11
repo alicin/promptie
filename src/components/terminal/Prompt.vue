@@ -13,6 +13,7 @@
   let history = []
   let historyIndex = 0
   let currentCommand = ''
+  let $input
   export default {
     name: 'prompt',
     components: {
@@ -34,6 +35,7 @@
           currentCommand = this.command
         }
         if (history.length && history.length > historyIndex) {
+          this.pushCaretToEnd()
           this.command = history[history.length - 1 - historyIndex]
           historyIndex++
         }
@@ -45,15 +47,43 @@
             this.command = currentCommand
             currentCommand = undefined
           }
+          this.pushCaretToEnd()
           historyIndex--
         }
+      },
+      getCaretPosition () {
+        if ('selectionStart' in $input) {
+          return $input.selectionStart
+        } else if (document.selection) {
+          $input.focus()
+          var sel = document.selection.createRange()
+          var selLen = document.selection.createRange().text.length
+          sel.moveStart('character', -$input.value.length)
+          return sel.text.length - selLen
+        }
+      },
+      setCaretPostion (caretPos) {
+        if ($input.createTextRange) {
+          var range = $input.createTextRange()
+          range.move('character', caretPos)
+          range.select()
+        } else {
+          $input.focus()
+          if ($input.selectionStart !== undefined) {
+            $input.setSelectionRange(caretPos, caretPos)
+          }
+        }
+      },
+      pushCaretToEnd () {
+        this.setCaretPostion(this.command.length)
       }
     },
     created () {
       window.Prompt = this
     },
     mounted () {
-      document.getElementById('prompt').focus()
+      $input = document.getElementById('prompt')
+      $input.focus()
     }
   }
 </script>
