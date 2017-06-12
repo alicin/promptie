@@ -15,17 +15,17 @@ export default function (screen, args) {
         let poster = new Image()
         poster.src = `http://image.tmdb.org/t/p/w92${res.results[0].poster_path}`
         poster.onload = () => {
-          // screen.push(poster.outerHTML, false)
-          // screen.pushNewLine()
-          // screen.push(paint('Title: ', {
-          //   styles: ['green', 'bold']
-          // }) + res.results[0].title)
-          // screen.push(paint('Plot: ', {
-          //   styles: ['green', 'bold']
-          // }) + res.results[0].overview)
-          // screen.push(paint('Year: ', {
-          //   styles: ['green', 'bold']
-          // }) + res.results[0].release_date)
+          screen.push(poster.outerHTML, false)
+          screen.pushNewLine()
+          screen.push(paint('Title: ', {
+            styles: ['green', 'bold']
+          }) + res.results[0].title)
+          screen.push(paint('Plot: ', {
+            styles: ['green', 'bold']
+          }) + res.results[0].overview)
+          screen.push(paint('Year: ', {
+            styles: ['green', 'bold']
+          }) + res.results[0].release_date)
           resolve(res.results[0].overview)
         }
       } else {
