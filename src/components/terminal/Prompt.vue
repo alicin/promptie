@@ -31,7 +31,11 @@
         if (command === '') {
           return TerminalScreen.push(this.prompt)
         }
-        Runner.run(command)
+        if (command.indexOf(' | ' > -1)) {
+          Runner.runPipe(command)
+        } else {
+          Runner.run(command)
+        }
         history.push(command)
       },
       historyBack () {
