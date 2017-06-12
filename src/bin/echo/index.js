@@ -1,3 +1,5 @@
-export default function (screen, args, done) {
-  done(args._plain)
+export default function (screen, args) {
+  return new Promise((resolve, reject) => {
+    resolve(args._plain)
+  })
 }

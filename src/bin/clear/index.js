@@ -1,4 +1,6 @@
-export default function (screen, args, done) {
-  screen.clear()
-  done()
+export default function (screen, args) {
+  return new Promise((resolve, reject) => {
+    screen.clear()
+    resolve()
+  })
 }
