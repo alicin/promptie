@@ -10,12 +10,9 @@
 </template>
 
 <script>
-  import Cmd from './screen-components/Cmd'
-  
   export default {
     name: 'screen',
     components: {
-      Cmd
     },
     data () {
       return {
