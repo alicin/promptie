@@ -20,7 +20,7 @@
     },
     data () {
       return {
-        prompt: '$',
+        prompt: '>',
         disabled: false,
         command: ''
       }
