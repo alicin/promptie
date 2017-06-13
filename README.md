@@ -53,7 +53,7 @@ Creating an application is very easy in promptie. Just create a folder inside `s
 
 `args` is a js object wrapping the parsed command line arguments. Promptie uses [minimist](https://github.com/substack/minimist) to parse arguments, you can check the github page to learn more.
 
-`resolve` method of the promise takes two arguments. `out` is a string argument that represents the final output of your application. This is the output that gets piped while using pipes. The second argument is `silent`. It is a boolean, optional value, `false` by default. if it is true or left blank, your final output will be printed on the screen on application exit.
+`resolve` method of the promise takes two arguments. `out` is a string argument that represents the final output of your application. This is the output that gets piped while using pipes. The second argument is `silent`. It is a boolean, optional value, `false` by default. If it is true or left blank, your final output will be printed on the screen on application exit.
 
 Here is an example application that basically colorize the input string. You can check the `bin` folder to see some other application examples.
 
@@ -78,7 +78,7 @@ export default function (screen, args) {
 Promptie has two main API's, [Screen](#screen) and [Prompt](#prompt).
 
 #### Screen
-- **`lines`**: A property containing all the lines on the [Screen](#screen).
+- **`lines`**: An array containing all the lines on the [Screen](#screen).
 ```js
 Screen.lines = []
 ```
@@ -98,7 +98,7 @@ Screen.replaceLastLine(line)
 ```js
 Screen.removeLastLine()
 ```
-- **`clean`**: Clears all lines from [Screen](#screen).
+- **`clean`**: Clears all the lines from [Screen](#screen).
 ```js
 Screen.removeLastLine()
 ```
@@ -153,7 +153,7 @@ screen.push(paint('You will be presented with a dummy determinate loading..',
 {styles: ['magenta', 'underline', 'white-bg']}))
 
 screen.push(paint('movie Star Wars', {styles: ['command']}))
-
+screen.push(paint('google.com', {styles: ['blue', 'bold'], link: 'http://google.ca'}}))
 ```
 
 
@@ -174,6 +174,7 @@ progress.pushProgressDeterminate(0.3, '_', 'O')
 
 // This will continuously loop through given character sequence until you call progress.removeProgress()
 progress.pushProgressIndeterminate(['/', '-', '|', '-', '\\', '-'], 100)
+progress.removeProgress()
 ```
 
 ## Road Map
