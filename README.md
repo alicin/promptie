@@ -110,7 +110,7 @@ Prompt.prompt = '$'
 ```
 - **`disabled`**: A boolean value if set to `false` the prompt will be disabled.
 ```js
-Prompt.prompt = '$'
+Prompt.disabled = false
 ```
 - **`getCaretPosition`**: Returns the caret position index.
 ```js
