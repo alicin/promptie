@@ -6,14 +6,14 @@ export default class Progress {
   static pushProgressIndeterminate (characterSequence, interval) {
     let index = characterSequence.length
 
-    TerminalScreen.push(characterSequence[characterSequence.length - 1])
+    Screen.push(characterSequence[characterSequence.length - 1])
 
     if (loadingInterval) {
       clearInterval(loadingInterval)
     }
 
     loadingInterval = setInterval(() => {
-      TerminalScreen.replaceLastLine(characterSequence[index % characterSequence.length])
+      Screen.replaceLastLine(characterSequence[index % characterSequence.length])
       index++
     }, interval)
   }
@@ -30,22 +30,22 @@ export default class Progress {
     }
     loading += ' %' + percentage
     if (!determinatePresent) {
-      TerminalScreen.push(loading)
+      Screen.push(loading)
       determinatePresent = true
     } else {
-      TerminalScreen.replaceLastLine(loading)
+      Screen.replaceLastLine(loading)
     }
   }
 
   static removeProgress () {
     if (determinatePresent) {
       determinatePresent = undefined
-      TerminalScreen.removeLastLine()
+      Screen.removeLastLine()
     }
     if (loadingInterval) {
       clearInterval(loadingInterval)
       loadingInterval = undefined
-      TerminalScreen.removeLastLine()
+      Screen.removeLastLine()
     }
   }
 

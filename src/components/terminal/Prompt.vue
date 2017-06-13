@@ -29,7 +29,7 @@
       execute (command) {
         this.command = ''
         if (command === '') {
-          return TerminalScreen.push(this.prompt)
+          return Screen.push(this.prompt)
         }
         if (command.indexOf(' | ' > -1)) {
           Runner.runPipe(command)

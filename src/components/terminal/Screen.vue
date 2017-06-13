@@ -62,7 +62,7 @@
       }
     },
     created () {
-      window.TerminalScreen = this
+      window.Screen = this
     }
   }
 </script>

@@ -7,9 +7,9 @@ export default class Runner {
       const cmd = require('../' + app + '/index').default
       if (typeof cmd === 'function') {
         Prompt.disabled = true
-        cmd(TerminalScreen, args).then(function (out, silent = false) {
+        cmd(Screen, args).then(function (out, silent = false) {
           if (!silent) {
-            TerminalScreen.push(out)
+            Screen.push(out)
           }
           Prompt.disabled = false
           setTimeout(() => {
@@ -17,13 +17,13 @@ export default class Runner {
           }, 1)
         })
       } else {
-        TerminalScreen.push(`-promptie: ${app}: command is in the wrong application format. It should return a function`)
+        Screen.push(`-promptie: ${app}: command is in the wrong application format. It should return a function`)
       }
     } catch (e) {
       if (e.message.indexOf('Cannot find module') > -1) {
-        TerminalScreen.push(`-promptie: ${app}: command not found`)
+        Screen.push(`-promptie: ${app}: command not found`)
       } else {
-        TerminalScreen.push(`-promptie: ${e.stack}`)
+        Screen.push(`-promptie: ${e.stack}`)
       }
     }
   }
@@ -31,9 +31,9 @@ export default class Runner {
   static parseCommand (command, silent = false) {
     const clean = Runner.cleanCommand(command)
     const parsedCommand = clean.split(' ')
-    TerminalScreen.pushNewLine()
+    Screen.pushNewLine()
     if (!silent) {
-      TerminalScreen.push(Prompt.prompt + ' ' + clean)
+      Screen.push(Prompt.prompt + ' ' + clean)
     }
     const app = parsedCommand[0]
     let args = minimist(parsedCommand.slice(1))
@@ -47,13 +47,13 @@ export default class Runner {
   static async runPipe (command) {
     const commands = Runner.parsePipedCommands(command)
     const first = require('../' + commands[0].app + '/index').default
-    let out = await first(TerminalScreen, commands[0].args)
+    let out = await first(Screen, commands[0].args)
     for (let i = 1; i < commands.length; i++) {
       let command = require('../' + commands[i] + '/index').default
-      let _out = await command(TerminalScreen, {_plain: out})
+      let _out = await command(Screen, {_plain: out})
       out = _out
     }
-    TerminalScreen.push(out)
+    Screen.push(out)
     Prompt.disabled = false
     setTimeout(() => {
       document.getElementById('prompt').focus()
@@ -62,8 +62,8 @@ export default class Runner {
 
   static parsePipedCommands (command) {
     const clean = Runner.cleanCommand(command)
-    TerminalScreen.pushNewLine()
-    TerminalScreen.push(Prompt.prompt + ' ' + clean)
+    Screen.pushNewLine()
+    Screen.push(Prompt.prompt + ' ' + clean)
     let commands = clean.split(' | ')
     let firstCommand = Runner.parseCommand(commands[0], true)
     commands.shift()
