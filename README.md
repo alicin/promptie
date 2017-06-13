@@ -169,7 +169,7 @@ Progress provides determinate and intereminate progress indicators for your app.
 ```js
 import progress from '../system/progress'
 
-// This will put '000000______________ %30' on the screen.
+// This will put 'OOOOOO______________ %30' on the screen.
 progress.pushProgressDeterminate(0.3, '_', 'O')
 
 // This will continuously loop through given character sequence until you call progress.removeProgress()
