@@ -2,6 +2,7 @@ import minimist from 'minimist'
 
 export default class Runner {
   static run (command) {
+    console.log('asd')
     const {app, args} = Runner.parseCommand(command)
     try {
       const cmd = require('../' + app + '/index').default
@@ -46,18 +47,27 @@ export default class Runner {
 
   static async runPipe (command) {
     const commands = Runner.parsePipedCommands(command)
-    const first = require('../' + commands[0].app + '/index').default
-    let out = await first(Screen, commands[0].args)
-    for (let i = 1; i < commands.length; i++) {
-      let command = require('../' + commands[i] + '/index').default
-      let _out = await command(Screen, {_plain: out})
-      out = _out
+    let i = 0
+    try {
+      const first = require('../' + commands[0].app + '/index').default
+      let out = await first(Screen, commands[0].args)
+      for (i = 1; i < commands.length; i++) {
+        let command = require('../' + commands[i] + '/index').default
+        let _out = await command(Screen, {_plain: out})
+        out = _out
+      }
+      Screen.push(out)
+      Prompt.disabled = false
+      setTimeout(() => {
+        document.getElementById('prompt').focus()
+      }, 1)
+    } catch (e) {
+      if (e.message.indexOf('Cannot find module') > -1) {
+        Screen.push(`-promptie: ${(i === 0) ? commands[i].app : commands[i]}: command not found`)
+      } else {
+        Screen.push(`-promptie: ${e.stack}`)
+      }
     }
-    Screen.push(out)
-    Prompt.disabled = false
-    setTimeout(() => {
-      document.getElementById('prompt').focus()
-    }, 1)
   }
 
   static parsePipedCommands (command) {

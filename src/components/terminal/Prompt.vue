@@ -1,6 +1,6 @@
 <template>
   <div :class="{disabled: disabled}">
-    <span class="prompt">{{ prompt }}</span>
+    <span class="prompt" :class="{'green': applicationPrompt, 'paint': applicationPrompt, 'bold': applicationPrompt}">{{ (applicationPrompt) ? '?' : prompt }}</span>
     <input id="prompt" type="text" 
     v-model="command" @keyup.enter="execute(command)" 
     @keyup.up="historyBack()" @keyup.down="historyForward()"
@@ -22,21 +22,27 @@
       return {
         prompt: '>',
         disabled: false,
+        applicationPrompt: false,
         command: ''
       }
     },
     methods: {
       execute (command) {
         this.command = ''
-        if (command === '') {
-          return Screen.push(this.prompt)
-        }
-        if (command.indexOf(' | ' > -1)) {
-          Runner.runPipe(command)
+        if (this.applicationPrompt) {
+          const event = new CustomEvent('prompt', { 'detail': command })
+          this.$el.dispatchEvent(event)
         } else {
-          Runner.run(command)
+          if (command === '') {
+            return Screen.push(this.prompt)
+          }
+          if (command.indexOf(' | ' > -1)) {
+            Runner.runPipe(command)
+          } else {
+            Runner.run(command)
+          }
+          history.push(command)
         }
-        history.push(command)
       },
       historyBack () {
         if (!currentCommand) {
