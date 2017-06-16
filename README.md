@@ -156,6 +156,36 @@ screen.push(paint('movie Star Wars', {styles: ['command']}))
 screen.push(paint('google.com', {styles: ['blue', 'bold'], link: 'http://google.ca'}}))
 ```
 
+#### Ask
+- **`ask(message)`**: Ask provides a prompt that you can use to get user input to . use in your app.
+
+```js
+import progress from '../system/progress'
+import paint from '../system/paint'
+import ask from '../system/ask'
+
+export default function (screen, args) {
+  return new Promise((resolve, reject) => {
+    ask('Enter the city name for forecast')
+    .then(function (city) {
+      progress.pushProgressIndeterminate(['/', '-', '|', '-', '\\', '-'], 100)
+      return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}`)
+    })
+    .then(function (res) {
+      return res.json()
+    })
+    .then(function (res) {
+      progress.removeProgress()
+      resolve(`Current temperature for ${res.name} is ${paint(parseInt(res.main.temp) + ' degrees.', {styles: ['bold', 'green']})}`)
+    })
+  })
+}
+
+```
+
+<img src="https://raw.githubusercontent.com/alicin/promptie/master/static/demo3/Large%20GIF%20(640x520).gif" alt="promptie demo" width="640">
+
+
 
 #### Progress
 Progress provides determinate and intereminate progress indicators for your app.
@@ -178,7 +208,7 @@ progress.removeProgress()
 ```
 
 ## Road Map
-- [ ] Giving applications their own prompt for gettin user input during the execution of the application.
+- [x] Giving applications their own prompt for gettin user input during the execution of the application.
 - [ ] Math parsing.
 - [ ] A `.promptie_profile` file for setting environmental options and running apps on launch.
 - [ ] A ruby on rails like application generator to generate application templates in the `src/bin`.
